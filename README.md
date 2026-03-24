@@ -80,59 +80,6 @@
 │           ├── frontend.yaml
 │           ├── ingress.yaml
 │           └── kustomization.yaml
-└── kubernetes
-    ├── database
-    │   ├── mariadb
-    │   │   ├── README.md
-    │   │   ├── base
-    │   │   │   ├── init.sql
-    │   │   │   ├── kustomization.yaml
-    │   │   │   ├── secret.yaml
-    │   │   │   ├── service.yaml
-    │   │   │   └── statefulset.yaml
-    │   │   └── overlays
-    │   │       └── kustomization.yaml
-    │   ├── mongodb
-    │   │   ├── README.md
-    │   │   ├── base
-    │   │   │   ├── create_collction
-    │   │   │   │   └── job.yaml
-    │   │   │   ├── kustomization.yaml
-    │   │   │   ├── secret.yaml
-    │   │   │   ├── service.yaml
-    │   │   │   └── statefulset.yaml
-    │   │   └── overlays
-    │   │       └── kustomization.yaml
-    │   ├── mysql
-    │   │   ├── README.md
-    │   │   ├── base
-    │   │   │   ├── init.sql
-    │   │   │   ├── kustomization.yaml
-    │   │   │   ├── secret.yaml
-    │   │   │   ├── service.yaml
-    │   │   │   └── statefulset.yaml
-    │   │   └── overlays
-    │   │       └── kustomization.yaml
-    │   └── redis
-    │       ├── README.md
-    │       └── base
-    │           ├── kustomization.yaml
-    │           ├── service.yaml
-    │           └── statefulset.yaml
-    ├── demo
-    │   ├── deployment.yaml
-    │   ├── hpa.yaml
-    │   ├── ingress.yaml
-    │   ├── kustomization.yaml
-    │   └── service.yaml
-    └── k8s
-        ├── backend.yaml
-        ├── config
-        │   ├── backend-config.json
-        │   └── frontend-config.json
-        ├── frontend.yaml
-        ├── ingress.yaml
-        └── kustomization.yaml
 ```
 
 
