@@ -60,6 +60,7 @@ images:
 컨테이너 최초 실행 시 `/docker-entrypoint-initdb.d/init.sql` 에 마운트되어 **최초 한 번만 실행**됩니다.
 
 예:
+
 ```
 CREATE DATABASE myapp;
 ```
@@ -82,34 +83,39 @@ psql -U postgres
 Headless Service 이름이 `postgres` 이므로 내부 DNS 주소는:
 
 ```
-postgres.<goormthon-n>.svc.cluster.local:5432
+postgres.goormthon-1.svc.cluster.local:5432
 ```
 
 예:
+
 ```
-psql -h postgres.<goormthon-n>.svc.cluster.local:5432 -U postgres -d myapp
+psql -h postgres.goormthon-1.svc.cluster.local:5432 -U postgres -d myapp
 ```
 
 ---
 
 ## 🧪 Init 적용 여부 확인
 
-1. Pod 접속  
+1. Pod 접속
+
 ```
 kubectl exec -it postgres-0 -- bash
 ```
 
-2. PostgreSQL 접속  
+2. PostgreSQL 접속
+
 ```
 psql -U postgres
 ```
 
-3. DB 목록 확인  
+3. DB 목록 확인
+
 ```
 \l
 ```
 
-4. init.sql에서 생성한 `myapp` DB 접속  
+4. init.sql에서 생성한 `myapp` DB 접속
+
 ```
 \c myapp
 ```
@@ -120,10 +126,12 @@ psql -U postgres
 
 - StatefulSet 기반이므로 Pod가 삭제되어도 데이터(PVC)는 유지됩니다.
 - 데이터를 초기화하려면 다음 명령어로 PVC를 삭제합니다:
+
 ```
-kubectl delete pvc -l app=postgres -n <goormthon-n>
+kubectl delete pvc -l app=postgres -n goormthon-1
 ```
-  **⚠️ 이 명령은 데이터를 완전히 삭제합니다.**
+
+**⚠️ 이 명령은 데이터를 완전히 삭제합니다.**
 
 - PostgreSQL 버전을 올릴 경우 기존 PVC와 데이터 포맷 충돌이 발생할 수 있으므로 주의해야 합니다.
 
@@ -146,7 +154,7 @@ kustomize build database/postgres/overlays
 ## 📌 연결 문자열 예시
 
 ```
-postgres://postgres:<password>@postgres.<goormthon-n>.svc.cluster.local:5432/myapp
+postgres://postgres:<password>@postgres.goormthon-1.svc.cluster.local:5432/myapp
 ```
 
 ---

@@ -1,7 +1,6 @@
 resources:
   - ../base
 
-
 # namespace: goormthon-1 # fix me
 # ArgoCD 사용 시 비워도 됩니다. 대신 ArgoCD 에서 namespace를 지정해 주세요.
 
@@ -10,7 +9,7 @@ images:
     newTag: latest # change to the MongoDB version you want to use
 
 patches:
-  - target: 
+  - target:
       kind: Secret
       name: mongodb-secret
     patch: |-
@@ -20,9 +19,9 @@ patches:
           MONGO_INITDB_ROOT_USERNAME: myuser
           MONGO_INITDB_ROOT_PASSWORD: mypassword
           # MONGO_INITDB_DATABASE: myapp
-  
+
   # colloction 생성 시 아래 코드를 참고하여 사용하세요
-  # host: mongodb-0.mongodb.<goormthon-n>.svc.cluster.local:27017 
+  # host: mongodb-0.mongodb.goormthon-1.svc.cluster.local:27017
 
   # - target:
   #     kind: Job
@@ -41,5 +40,5 @@ patches:
   #             - /bin/bash
   #             - -c
   #             - |
-  #               mongosh "mongodb://$(MONGO_USERNAME):$(MONGO_PASSWORD)@mongodb-0.mongodb.<goormthon-n>.svc.cluster.local:27017/admin" \
+  #               mongosh "mongodb://$(MONGO_USERNAME):$(MONGO_PASSWORD)@mongodb-0.mongodb.goormthon-1.svc.cluster.local:27017/admin" \
   #               --eval 'db = db.getSiblingDB("myapp"); db.createCollection("init_check"); print("✅ myapp DB and collection created.");'
